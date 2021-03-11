@@ -12,7 +12,7 @@ as a bonus the instructions for setting un a CI workflow using Github Actions.
 
 ```
 git clone https://github.com/AppImageCrafters/appimage-builder-flutter-example.git
-cd appimage-builder-flutter-example/hello_flutter
+cd appimage-builder-flutter-example
 
 # enable flutter desktop support
 flutter channel dev
@@ -23,7 +23,6 @@ flutter config --enable-linux-desktop
 flutter build linux
 
 # build the AppImage
-cd ..
 appimage-builder --skip-test
 ```
 
