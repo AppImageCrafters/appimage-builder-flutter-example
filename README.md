@@ -1,7 +1,6 @@
 # appimage-builder-flutter-example
 
-This project aims to ilustrate how to pack a [flutter](https://flutter.dev) project into an AppImage. Also includes
-as a bonus the instructions for setting un a CI workflow using Github Actions.
+This project aims to ilustrate how to pack a [flutter](https://flutter.dev) project into an AppImage. Also, includes instructions for setting un a CI workflow using Github Actions.
 
 ## Requirementes
 - Ubuntu (18.04 or higher)
@@ -25,4 +24,3 @@ flutter build linux
 # build the AppImage
 appimage-builder --skip-test
 ```
-
