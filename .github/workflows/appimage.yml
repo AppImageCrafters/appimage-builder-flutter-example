@@ -18,8 +18,8 @@ jobs:
     - run: flutter config --enable-linux-desktop
     - name: "Install dependencies"
       run: |
-        apt-get update
-        apt-get install -y cmake ninja-build build-essential
+        sudo apt-get update
+        sudo apt-get install -y cmake ninja-build build-essential
     - run: cd hello_flutter && flutter build linux
     - name: pack
       uses: docker://appimagecrafters/appimage-builder:0.8.5
