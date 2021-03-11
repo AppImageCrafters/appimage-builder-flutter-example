@@ -20,13 +20,15 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y cmake ninja-build build-essential pkg-config curl file git unzip xz-utils zip libgtk-3-dev
-    - run: cd hello_flutter && flutter build linux
-    - name: pack
+    - name: Build flutter app
+      run: cd hello_flutter && flutter build linux
+    - name: Build AppImage unsing appimage-builder
       uses: docker://appimagecrafters/appimage-builder:0.8.5
       with:
         entrypoint: appimage-builder
         args: --recipe ./AppImageBuilder.yml --skip-test
-    - uses: actions/upload-artifact@v2
+    - name: Save build Artifact
+      uses: actions/upload-artifact@v2
       with:
         name: AppImage
         path: './*.AppImage*'
