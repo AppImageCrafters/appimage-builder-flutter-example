@@ -16,11 +16,11 @@ jobs:
     - run: flutter channel dev
     - run: flutter upgrade
     - run: flutter config --enable-linux-desktop
-    - run: flutter doctor
     - name: "Install dependencies"
       run: |
         sudo apt-get update
         sudo apt-get install -y cmake ninja-build build-essential pkg-config curl file git unzip xz-utils zip
+    - run: flutter doctor
     - run: cd hello_flutter && flutter build linux
     - name: pack
       uses: docker://appimagecrafters/appimage-builder:0.8.5
