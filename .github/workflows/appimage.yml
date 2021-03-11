@@ -19,4 +19,24 @@ jobs:
     - run: flutter channel dev
     - run: flutter upgrade
     - run: flutter config --enable-linux-desktop
-    - run: flutter build
+    - run: |
+        cd hello_flutter
+        flutter build
+    - name: pack
+      uses: docker://appimagecrafters/appimage-builder:0.8.5
+      with:
+        entrypoint: appimage-builder
+        args: --recipe ./AppImageBuilder.yml --skip-test
+    - uses: actions/upload-artifact@v2
+      with:
+        name: AppImage
+        path: './*.AppImage*'
+    - name: Release AppImage
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        title: Continuous build
+        automatic_release_tag: 'continuous'
+        prerelease: true
+        draft: false
+        files: './*.AppImage*'
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
