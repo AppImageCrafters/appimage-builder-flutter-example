@@ -12,16 +12,18 @@ jobs:
     - uses: actions/checkout@v2
     - uses: subosito/flutter-action@v1
       with:
-        flutter-version: '1.22.4'
-    - run: flutter channel dev
-    - run: flutter upgrade
+        channel: beta
+    - run: flutter channel beta
     - run: flutter config --enable-linux-desktop
+    - run: flutter upgrade
     - name: "Install dependencies"
       run: |
         sudo apt-get update
         sudo apt-get install -y cmake ninja-build build-essential pkg-config curl file git unzip xz-utils zip libgtk-3-dev
     - name: Build flutter app
-      run: flutter build linux
+      run: |
+        flutter pub get
+        flutter build linux
     - name: Build AppImage unsing appimage-builder
       uses: docker://appimagecrafters/appimage-builder:0.8.5
       with:
